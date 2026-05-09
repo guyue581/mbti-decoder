@@ -1,0 +1,61 @@
+{
+  "name": "mbti-decoder",
+  "version": "1.0.0",
+  "description": "人格解码器 - 60题精准测试，职场黑话翻译，AI人格对话",
+  "main": "electron/main.cjs",
+  "author": "古月开发",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "electron:dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "electron:build": "vite build && electron-builder",
+    "electron:build:win": "vite build && electron-builder --win"
+  },
+  "dependencies": {
+    "pinia": "^2.1.7",
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "autoprefixer": "^10.4.18",
+    "concurrently": "^8.2.2",
+    "electron": "^29.4.6",
+    "electron-builder": "^24.13.3",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.1.6",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.mbti.decoder",
+    "productName": "人格解码器",
+    "directories": {
+      "output": "release6"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "人格解码器",
+      "uninstallDisplayName": "人格解码器",
+      "warningsAsErrors": false,
+      "include": "installer.nsh"
+    },
+    "asar": true
+  }
+}
